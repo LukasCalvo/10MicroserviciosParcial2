@@ -19,6 +19,13 @@ spring:
               predicates:
                 - Path=/api/v1/juegos/**
 
+            - id: wallet-service
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/v1/wallet/**
+              filters:
+                - jwtFilter
+
 app:
   jwt:
     secret: VGhpcy1Jcy1BLVZlcnktU2VjdXJlLVNlY3JldC1LZXktRm9yLUpXVC1BcGktQXV0aGVudGljYXRpb24=
