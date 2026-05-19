@@ -43,6 +43,11 @@ public class JuegoController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/validate/{id}")
+    public boolean verificarSiJuegoExiste(@PathVariable int id) {
+        return juegoService.getJuegoById(id) != null;
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Juego> actualizarJuego(@PathVariable int id, @Valid @RequestBody JuegoDto juegoDTO) {
         Juego juegoParaActualizar = new Juego();
