@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.math.BigDecimal;
 
-@FeignClient(name = "wallet-service", url = "http://localhost:8089/api/wallets")
+@FeignClient(name = "wallet-service", url = "/api/v1/wallet")
 public interface WalletClient {
 
     @GetMapping("/validate-balance")

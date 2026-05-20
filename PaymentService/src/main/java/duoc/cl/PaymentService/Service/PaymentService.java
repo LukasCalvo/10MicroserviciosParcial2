@@ -41,7 +41,7 @@ public class PaymentService {
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        PaymentTransaction savedTransaction = PaymentRepository.save(transaction);
+        PaymentTransaction savedTransaction = paymentRepository.save(transaction);
 
         PaymentStatusEvent event = new PaymentStatusEvent(
                 savedTransaction.getOrderId(),
@@ -50,7 +50,7 @@ public class PaymentService {
                 savedTransaction.getStatus(),
                 savedTransaction.getGatewayTransactionId()
         );
-        PaymentProducer.sendPaymentEvent(event);
+        paymentProducer.sendPaymentEvent(event);
 
         return savedTransaction;
     }

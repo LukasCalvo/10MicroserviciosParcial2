@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 public class PaymentProducer {
 
     private final KafkaTemplate<String, PaymentStatusEvent> kafkaTemplate;
-    private static final String TOPIC = "payment-events";
+    private static final String TOPIC = "payment-confirmed";
 
     public void sendPaymentEvent(PaymentStatusEvent event) {
         log.info("Publicando evento de pago en Kafka para la Orden: {}", event.orderId());
