@@ -13,5 +13,5 @@ public class GameKeyDTO {
     private String keyCode;
 
     @NotNull(message = "El ID del juego asociado es obligatorio.")
-    private Long juegoId;
+    private Integer juegoId;
 }
