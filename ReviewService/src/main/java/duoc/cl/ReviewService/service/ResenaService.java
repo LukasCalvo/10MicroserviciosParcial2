@@ -1,5 +1,6 @@
 package duoc.cl.ReviewService.service;
 
+import duoc.cl.ReviewService.client.GameCatalogClient;
 import duoc.cl.ReviewService.dto.ResenaDto;
 import duoc.cl.ReviewService.model.Resena;
 import duoc.cl.ReviewService.repository.ResenaRepository;
@@ -15,7 +16,16 @@ public class ResenaService {
     @Autowired
     private ResenaRepository resenaRepository;
 
+    @Autowired
+    private GameCatalogClient gameCatalogClient;
+
     public Resena crearResena(ResenaDto dto) {
+        boolean existeJuego = gameCatalogClient.verificarSiJuegoExiste(dto.getJuegoId());
+
+        if (!existeJuego) {
+            throw new IllegalArgumentException("El juego con el ID: " + dto.getJuegoId() + ", no existe en el catalogo.");
+        }
+
         Resena resena = new Resena();
         resena.setJuegoId(dto.getJuegoId());
         resena.setUsuarioEmail(dto.getUsuarioEmail());
