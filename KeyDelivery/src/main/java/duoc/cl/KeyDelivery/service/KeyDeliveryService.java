@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,8 @@ public class KeyDeliveryService {
     @Transactional
     public void processKeyDelivery(PaymentConfirmedEvent event) {
         try {
-            String decryptedKey = inventoryClient.claimGameKey(event.getGameId());
+            Map<String, Object> respuestaInventario = inventoryClient.claimGameKey(event.getGameId());
+            String decryptedKey = (String) respuestaInventario.get("keyCode");
 
             DeliveredKey delivery = DeliveredKey.builder()
                     .orderId(event.getOrderId())
