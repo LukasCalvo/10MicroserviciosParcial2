@@ -23,6 +23,12 @@ public class BilleteraController {
         return ResponseEntity.ok(billeteraService.obtenerBilletera(email));
     }
 
+    @GetMapping("/validate-balance")
+    public boolean verifyFunds(@RequestParam String customerId, @RequestParam Double amount) {
+        Billetera billetera = billeteraService.obtenerBilletera(customerId);
+        return billetera.getSaldo() >= amount;
+    }
+
     @PostMapping("/transaccion")
     public ResponseEntity<?> procesarTransaccion(@Valid @RequestBody TransaccionDto transaccion) {
         try {
