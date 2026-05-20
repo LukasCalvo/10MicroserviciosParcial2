@@ -20,3 +20,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+kafka:
+  consumer:
+    bootstrap-servers: localhost:29092
+    group-id: wallet-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
