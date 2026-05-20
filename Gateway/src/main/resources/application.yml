@@ -23,13 +23,23 @@ spring:
               uri: http://localhost:8082
               predicates:
                 - Path=/api/v1/wallet/**
-              filters:
-                - jwtFilter
+              # filters:
+              #  - jwtFilter
 
             - id: review-service
-              uri: http://localhost:8083
+              uri: http://localhost:8089
               predicates:
                 - Path=/api/v1/reviews/**
+
+            - id: inventory-service
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/v1/inventory/**
+
+            - id: payment-service
+              uri: http://localhost:8086
+              predicates:
+                - Path=/api/payments/**
 
             - id: support-service
               uri: http://localhost:8084
