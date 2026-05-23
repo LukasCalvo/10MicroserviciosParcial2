@@ -24,41 +24,79 @@ Cada componente backend posee una responsabilidad única, lógica de negocio pro
 * **Seguridad**: Implementa login con generación de tokens seguros sin estado mediante JSON Web Token (JJWT) y aplica un estricto Control de Acceso Basado en Roles (RBAC).
 * **Persistencia**: Almacena las credenciales de los usuarios utilizando el algoritmo de cifrado BCrypt para resguardar las contraseñas en la base de datos.
 
+* Modelo Relacional:
+* <img width="168" height="136" alt="image" src="https://github.com/user-attachments/assets/3bd23bf5-93a5-42e9-928f-b1693dd64c0f" />
+
+
 ### 2. Game-Catalog
 * **Responsabilidad**: Administra el catálogo maestro global de los videojuegos del sistema.
 * **Funcionalidades**: Provee información de referencia estandarizada como nombres, descripciones técnicas, categorizaciones y recursos de imágenes multimedia.
+
+* Modelo Relacional:
+* <img width="195" height="137" alt="image" src="https://github.com/user-attachments/assets/0d814acb-3bd0-4b6a-ab68-7988a03a9c41" />
 
 ### 3. Inventory-Service
 * **Responsabilidad**: Gestiona el almacenamiento físico digital de las licencias de activación de videojuegos (Keys) en stock vinculadas a cada juego.
 * **Lógica Extendida**: Controla de forma rigurosa los estados de cada llave (Disponible, Reservada, Vendida, Inválida) para evitar problemas transaccionales como la duplicidad de ventas.
 
+* Modelo Relacional:
+* <img width="198" height="117" alt="image" src="https://github.com/user-attachments/assets/d7761c7f-a2d6-45ea-a55c-a4bd03e522c1" />
+
+
 ### 4. Seller-Service
 * **Responsabilidad**: Administra los perfiles públicos de los vendedores del marketplace, su reputación histórica y sus catálogos de ofertas específicas.
 * **Lógica Extendida**: Permite que múltiples vendedores compitan con diferentes precios y condiciones para un mismo título del catálogo maestro.
+
+* Modelo Relacional:
+* <img width="463" height="184" alt="image" src="https://github.com/user-attachments/assets/1f11d5aa-5efb-40da-b1d2-ad4c32340cb6" />
+
 
 ### 5. Order-Service
 * **Responsabilidad**: Orquesta el flujo completo de creación de pedidos y compras en la plataforma.
 * **Lógica Extendida**: Valida la disponibilidad de stock en tiempo real mediante comunicación interna y realiza el seguimiento exhaustivo del estado del flujo de compra.
 
+* Modelo Relacional:
+* <img width="214" height="186" alt="image" src="https://github.com/user-attachments/assets/f1f3806b-c5a2-4059-a42e-d12c2b76b975" />
+
+
 ### 6. Payment-Service
 * **Responsabilidad**: Ejecuta la simulación transaccional de pagos del sistema y se comunica con pasarelas externas.
 * **Lógica Extendida**: Valida transacciones financieras y emite eventos de éxito o fallo para actualizar el estado del pedido de forma inmediata.
+
+* Modelo Relacional:
+* <img width="251" height="229" alt="image" src="https://github.com/user-attachments/assets/47e1397f-24d7-4e4f-9b6b-18ec50d2eb40" />
+
 
 ### 7. Key-Delivery
 * **Responsabilidad**: Componente especializado encargado de liberar y despachar de forma segura la Key adquirida al cliente final.
 * **Funcionalidades**: Procesa la entrega automatizada a través de visualización directa en el perfil del usuario o mediante simulación de envío por correo electrónico una vez confirmado el pago.
 
+* Modelo Relacional:
+* <img width="242" height="162" alt="image" src="https://github.com/user-attachments/assets/8f2ff6be-eb48-42cb-b489-0c251a360d7f" />
+
+
 ### 8. Review-Service
 * **Responsabilidad**: Gestiona el sistema de calificaciones, reseñas y comentarios de la plataforma.
 * **Funcionalidades**: Recopila la retroalimentación de los clientes hacia los videojuegos específicos y evalúa el comportamiento transaccional de los vendedores para calcular su reputación.
+
+* Modelo Relacional:
+* <img width="194" height="163" alt="image" src="https://github.com/user-attachments/assets/4d7b513e-36e0-4b04-a1fc-5e1f1094244d" />
+
 
 ### 9. Wallet-Service
 * **Responsabilidad**: Maneja los saldos virtuales del sistema para los usuarios compradores y las herramientas de liquidación para los vendedores.
 * **Lógica Extendida**: Permite recargas de saldo, pagos nativos utilizando fondos de la cartera virtual y distribuye automáticamente las ganancias netas correspondientes a las cuentas de los oferentes tras una venta exitosa.
 
+* Modelo Relacional:
+* <img width="456" height="150" alt="image" src="https://github.com/user-attachments/assets/77ddbf83-841a-464f-a2ca-d4a7056817fa" />
+
+
 ### 10. Support-Service
 * **Responsabilidad**: Módulo de postventa que administra el sistema de tickets de soporte técnico.
 * **Funcionalidades**: Permite a los clientes reportar inconvenientes con llaves inválidas o fallos imprevistos en las transacciones de pago, habilitando un canal directo de resolución operativa.
+
+* Modelo Relacional:
+* <img width="220" height="182" alt="image" src="https://github.com/user-attachments/assets/82f84634-7af1-43d0-9d27-2803ca7982e5" />
 
 ---
 
