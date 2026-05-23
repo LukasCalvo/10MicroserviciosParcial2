@@ -28,7 +28,6 @@ public class GatewayConfig {
             @Override
             public Collection<Method> get() {
                 try {
-                    // Retornamos el método estático que no recibe argumentos para que coincida con el YAML
                     return List.of(GatewayConfig.class.getMethod("jwtFilter"));
                 } catch (NoSuchMethodException e) {
                     throw new RuntimeException(e);

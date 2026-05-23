@@ -21,6 +21,9 @@ public class PaymentTransaction {
     private String orderId;
 
     @Column(nullable = false)
+    private Long juegoId;
+
+    @Column(nullable = false)
     private String customerId;
 
     @Column(nullable = false)

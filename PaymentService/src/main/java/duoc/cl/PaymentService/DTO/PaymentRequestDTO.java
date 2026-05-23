@@ -16,5 +16,8 @@ public record PaymentRequestDTO(
         BigDecimal amount,
 
         @NotNull(message = "El método de pago es obligatorio")
-        String paymentMethod
+        String paymentMethod,
+
+        @NotNull(message = "La id del juego no puede estar vacia")
+        Long juegoId
 ) {}

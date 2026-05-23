@@ -21,11 +21,11 @@ public class JuegoService {
         return juegoRepository.save(juego);
     }
 
-    public Juego getJuegoById(int id) {
+    public Juego getJuegoById(Long id) {
         return juegoRepository.findById(id).orElse(null);
     }
 
-    public Juego updateJuego(int id, Juego detallesJuego) {
+    public Juego updateJuego(Long id, Juego detallesJuego) {
         Juego juegoExistente = juegoRepository.findById(id).orElse(null);
 
         if (juegoExistente != null) {
@@ -39,7 +39,7 @@ public class JuegoService {
         return null;
     }
 
-    public boolean deleteJuego(int id) {
+    public boolean deleteJuego(Long id) {
         if (juegoRepository.existsById(id)) {
             juegoRepository.deleteById(id);
             return true;

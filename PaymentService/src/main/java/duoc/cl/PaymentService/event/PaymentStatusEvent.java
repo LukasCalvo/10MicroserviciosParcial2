@@ -7,5 +7,6 @@ public record PaymentStatusEvent(
         String customerId,
         BigDecimal amount,
         String status,
-        String gatewayTransactionId
+        String gatewayTransactionId,
+        Long gameId
 ) {}

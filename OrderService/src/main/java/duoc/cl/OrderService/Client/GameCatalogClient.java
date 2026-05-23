@@ -4,9 +4,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "Game-Catalog")
+@FeignClient(name = "game-catalog", path = "/api/v1/juegos")
 public interface GameCatalogClient {
-
-    @GetMapping("/api/games/{id}/price")
+    @GetMapping("/{id}/price")
     Double getGamePrice(@PathVariable("id") Long id);
 }

@@ -47,14 +47,11 @@ public class InventoryService {
 
     @Transactional
     public GameKey despacharKey(long juegoId) {
-        GameKey keyParaVender = repository.findFirstAvailableKey(juegoId)
+        GameKey keyParaVender = repository.findFirstByJuegoIdAndVendidaFalse(juegoId)
                 .orElseThrow(() -> new RuntimeException("No quedan Keys disponibles para el juego ID: " + juegoId));
-
         keyParaVender.setVendida(true);
         repository.save(keyParaVender);
-
         kafkaTemplate.send("key-sold-topic", "Key ID: " + keyParaVender.getId() + " despachada para juego: " + juegoId);
-
         return keyParaVender;
     }
 }

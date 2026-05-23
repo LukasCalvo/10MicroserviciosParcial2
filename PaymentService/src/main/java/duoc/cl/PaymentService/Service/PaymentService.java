@@ -26,7 +26,7 @@ public class PaymentService {
         String status = "APPROVED";
         String gatewayId = "TX-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
-        if (request.amount().doubleValue() > 500.0) {
+        if (request.amount().doubleValue() < 500.0) {
             status = "REJECTED";
             gatewayId = null;
         }
@@ -36,6 +36,7 @@ public class PaymentService {
                 .customerId(request.customerId())
                 .amount(request.amount())
                 .paymentMethod(request.paymentMethod())
+                .juegoId(request.juegoId())
                 .status(status)
                 .gatewayTransactionId(gatewayId)
                 .createdAt(LocalDateTime.now())
@@ -48,7 +49,8 @@ public class PaymentService {
                 savedTransaction.getCustomerId(),
                 savedTransaction.getAmount(),
                 savedTransaction.getStatus(),
-                savedTransaction.getGatewayTransactionId()
+                savedTransaction.getGatewayTransactionId(),
+                savedTransaction.getJuegoId()
         );
         paymentProducer.sendPaymentEvent(event);
 

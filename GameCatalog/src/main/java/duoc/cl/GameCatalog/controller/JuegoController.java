@@ -35,7 +35,7 @@ public class JuegoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(juegoCreado);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Juego> obtenerPorId(@PathVariable int id) {
+    public ResponseEntity<Juego> obtenerPorId(@PathVariable Long id) {
         Juego juego = juegoService.getJuegoById(id);
         if (juego != null) {
             return ResponseEntity.ok(juego);
@@ -44,12 +44,21 @@ public class JuegoController {
     }
 
     @GetMapping("/validate/{id}")
-    public boolean verificarSiJuegoExiste(@PathVariable int id) {
+    public boolean verificarSiJuegoExiste(@PathVariable Long id) {
         return juegoService.getJuegoById(id) != null;
     }
 
+    @GetMapping("/{id}/price")
+    public ResponseEntity<Double> obtenerPrecio(@PathVariable Long id) {
+        Juego juego = juegoService.getJuegoById(id);
+        if (juego != null) {
+            return ResponseEntity.ok(juego.getPrecio());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Juego> actualizarJuego(@PathVariable int id, @Valid @RequestBody JuegoDto juegoDTO) {
+    public ResponseEntity<Juego> actualizarJuego(@PathVariable Long id, @Valid @RequestBody JuegoDto juegoDTO) {
         Juego juegoParaActualizar = new Juego();
         juegoParaActualizar.setNombre(juegoDTO.getNombre());
         juegoParaActualizar.setDescripcion(juegoDTO.getDescripcion());
@@ -65,7 +74,7 @@ public class JuegoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarJuego(@PathVariable int id) {
+    public ResponseEntity<Void> eliminarJuego(@PathVariable Long id) {
         boolean eliminado = juegoService.deleteJuego(id);
         if (eliminado) {
             return ResponseEntity.noContent().build();

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "game-catalog")
 public interface GameCatalogClient {
 
-    @GetMapping("/api/v1/games/exists/{id}")
+    @GetMapping("/api/v1/juegos/validate/{id}")
     Boolean checkGameExists(@PathVariable("id") Long id);
 }
