@@ -13,16 +13,30 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    deploy:
+      resources:
+        limits:
+          memory: 500M
 
   mysql-server:
     image: mysql:8.0
+    container_name: mysql-db
     ports:
       - "3306:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
+    tmpfs:
+      - /var/lib/mysql
+      
+    deploy:
+      resources:
+        limits:
+          memory: 400M
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     ports:
       - "8888:80"
     environment:
@@ -31,3 +45,7 @@ services:
       PMA_PASSWORD: ""
     depends_on:
       - mysql-server
+    deploy:
+      resources:
+        limits:
+          memory: 150M
